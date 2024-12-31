@@ -36,6 +36,6 @@ while True:
     if action == 'sair':
         pygame.quit()
         sys.exit()
-    else:
-        correct_answers = screens[action](screen, clock)
+    elif action == 'iniciar':
+        correct_answers = game_screen(screen, clock)
         resultado_screen(correct_answers, screen, clock)

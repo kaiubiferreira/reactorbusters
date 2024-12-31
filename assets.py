@@ -2,22 +2,25 @@ import os
 
 WIDTH, HEIGHT = 1600, 900
 
-QUESTION_VIDEO_WIDTH, QUESTION_VIDEO_HEIGHT = 400, 400
+QUESTION_VIDEO_WIDTH, QUESTION_VIDEO_HEIGHT = 800, 800
 
 NUMBER_OF_QUESTIONS = 5
 
 MENU_BACKGROUND = os.path.join("resources", "menu-background.jpg")
-STATUS_RECT_WIDTH, STATUS_RECT_HEIGHT = 70, 30
+STATUS_RECT_WIDTH, STATUS_RECT_HEIGHT = 100, 100
 SQUARE_PADDING = 10
 VIDEO_PADDING = 40
-STATUS_BAR_WIDTH = STATUS_RECT_WIDTH * NUMBER_OF_QUESTIONS + SQUARE_PADDING * (NUMBER_OF_QUESTIONS - 1)
+TITLE_WIDTH, TITLE_HEIGHT = 250, 50
+LABEL_WIDTH, LABEL_HEIGHT = 250, 50
+LABEL_RADIUS = 15
+TOP_MARGIN = 10
 
-CARD_WIDTH, CARD_HEIGHT = 256 * 0.8, 384 * 0.8
+CARD_WIDTH, CARD_HEIGHT = 256 * 0.7, 384 * 0.7
 CARD_BORDER_RADIUS = 15
-CARD_PADDING = 17
+CARD_PADDING = 15
 CARD_BORDER_WIDTH = 10
 
-CONFIRM_BUTTON_WIDTH, CONFIRM_BUTTON_HEIGHT = 200, 50
+CONFIRM_BUTTON_WIDTH, CONFIRM_BUTTON_HEIGHT = 130, 50
 BUTTON_RADIUS = 15
 
 QUESTIONS = {
@@ -128,5 +131,17 @@ CARDS = [
         'title': 'Dessorção ausente',
         'group': 'Desorption',
         'image': 'desorption_absent.png'
-    }
+    },
+    {
+        'id': 'desorption_absent_2',
+        'title': 'Dessorção ausente mesmo',
+        'group': 'Desorption',
+        'image': 'desorption_absent.png'
+    },
+    {
+        'id': 'desorption_absent_3',
+        'title': 'Dessorção bastante ausente',
+        'group': 'Desorption',
+        'image': 'desorption_absent.png'
+    },
 ]

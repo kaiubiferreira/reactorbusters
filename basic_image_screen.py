@@ -5,8 +5,11 @@ button_x = WIDTH * 0.5 - BUTTON_WIDTH // 2
 button_y = HEIGHT * 0.9
 rect = pygame.Rect(button_x, button_y, BUTTON_WIDTH, BUTTON_HEIGHT)
 
+hover_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_HAND)
+default_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_ARROW)
 
-def resultado_screen(resultado, screen, clock):
+
+def basic_image_screen(image, screen, clock):
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -17,14 +20,9 @@ def resultado_screen(resultado, screen, clock):
                 mouse_pos = event.pos
                 if rect.collidepoint(mouse_pos):
                     return
-        screen.fill((255, 255, 255))  # RGB for white
 
-        if resultado > 3:
-            background_image = SUCCESS_IMAGE
-        else:
-            background_image = FAILURE_IMAGE
-
-        background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
+        pygame.mouse.set_cursor(default_cursor)
+        background_image = pygame.transform.scale(image, (WIDTH, HEIGHT))
 
         screen.blit(background_image, (0, 0))
 
@@ -33,6 +31,7 @@ def resultado_screen(resultado, screen, clock):
 
         if is_hover:
             button_color = COLORS['button_hover']
+            pygame.mouse.set_cursor(hover_cursor)
         else:
             button_color = COLORS['primary']
 

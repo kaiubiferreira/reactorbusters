@@ -15,12 +15,17 @@ button_height = 60
 buttons = ['Iniciar', 'Introdução', 'Regras', 'Créditos', 'Sair']
 button_positions = []
 
+default_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_ARROW)
+hover_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_HAND)
+
 
 def draw_button(surface, position, text, is_hover=False):
     if is_hover:
         color = COLORS['button_hover']
+        pygame.mouse.set_cursor(hover_cursor)
     else:
         color = COLORS['button']
+
     rect = pygame.Rect(position[0], position[1], button_width, button_height)
     pygame.draw.rect(surface, color, rect, border_radius=button_radius)
     font = pygame.font.Font(None, 36)
@@ -48,6 +53,7 @@ def menu_screen(screen, clock):
                     if pos.collidepoint(mouse_pos):
                         return buttons[index].lower()
 
+        pygame.mouse.set_cursor(default_cursor)
         screen.blit(background, (0, 0))
 
         # Calculate button positions

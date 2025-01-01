@@ -13,10 +13,13 @@ button_positions = {}
 selected_cards = []
 current_question_index = 0
 go_back = False
+default_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_ARROW)
+hover_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_HAND)
 
 
 def reset():
     global answers_state, selected_questions, card_positions, button_positions, selected_cards, current_question_index, go_back
+    pygame.mouse.set_cursor(default_cursor)
     answers_state = ["pending" for _ in range(NUMBER_OF_QUESTIONS)]
     selected_questions = random.sample(list(QUESTIONS.keys()), NUMBER_OF_QUESTIONS)
     card_positions = {}
@@ -29,8 +32,9 @@ def reset():
 def game_screen(screen, clock):
     reset()
     while True:
+        pygame.mouse.set_cursor(default_cursor)
         check_click()
-        show_question(screen)
+        show_question(screen, clock)
         draw_status_bar(screen)
         pygame.display.flip()
         clock.tick(30)
@@ -125,6 +129,7 @@ def draw_cards(screen):
                 card_image = pygame.transform.scale(card['image'],
                                                     (CARD_WIDTH + CARD_BORDER_WIDTH, CARD_HEIGHT + CARD_BORDER_WIDTH))
                 screen.blit(card_image, (card_x - CARD_BORDER_WIDTH // 2, card_y - CARD_BORDER_WIDTH // 2))
+                pygame.mouse.set_cursor(hover_cursor)
             else:
                 screen.blit(card_image, (card_x, card_y))
 
@@ -153,6 +158,7 @@ def draw_buttons(screen):
             button_color = COLORS['button_disabled']
         elif is_hover:
             button_color = COLORS['button_hover']
+            pygame.mouse.set_cursor(hover_cursor)
         else:
             button_color = COLORS['primary']
 
@@ -216,7 +222,7 @@ def check_click():
                     click_button(identity)
 
 
-def show_question(screen):
+def show_question(screen, clock):
     question = QUESTIONS[selected_questions[current_question_index]]
     video = question['video']
 
@@ -241,6 +247,7 @@ def show_question(screen):
         draw_cards(screen)
         draw_buttons(screen)
         pygame.display.flip()
+        clock.tick(30)
         if exit_condition():
             break
 

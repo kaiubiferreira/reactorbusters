@@ -7,7 +7,7 @@ from credits import credits_screen
 from game import game_screen
 from introduction import introduction_screen
 from menu import menu_screen
-from resultado import resultado_screen
+from results import results_screen
 from rules import rules_screen
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -31,7 +31,7 @@ while True:
     elif action == 'iniciar':
         correct_answers, go_back = game_screen(screen, clock)
         if not go_back:
-            resultado_screen(correct_answers, screen, clock)
+            results_screen(correct_answers, screen, clock)
     elif action == 'créditos':
         credits_screen(screen, clock)
     elif action == 'introdução':

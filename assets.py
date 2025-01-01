@@ -33,6 +33,10 @@ WRONG_IMAGE = pygame.image.load(os.path.join("resources", "wrong_answer.png"))
 SUCCESS_IMAGE = pygame.image.load(os.path.join("resources", "success.png"))
 FAILURE_IMAGE = pygame.image.load(os.path.join("resources", "failure.png"))
 
+CREDITS_IMAGE = pygame.image.load(os.path.join("resources", "credits.png"))
+INTRODUCTION_IMAGE = pygame.image.load(os.path.join("resources", "introduction.png"))
+RULES_IMAGE = pygame.image.load(os.path.join("resources", "rules.png"))
+
 PENDING_COLOR = (169, 169, 169)
 
 QUESTIONS = {

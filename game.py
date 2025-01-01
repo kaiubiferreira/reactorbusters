@@ -17,7 +17,7 @@ go_back = False
 
 def reset():
     global answers_state, selected_questions, card_positions, button_positions, selected_cards, current_question_index, go_back
-    answers_state = ["pending" for q in range(NUMBER_OF_QUESTIONS)]
+    answers_state = ["pending" for _ in range(NUMBER_OF_QUESTIONS)]
     selected_questions = random.sample(list(QUESTIONS.keys()), NUMBER_OF_QUESTIONS)
     card_positions = {}
     button_positions = {}

@@ -12,27 +12,30 @@ card_positions = {}
 button_positions = {}
 selected_cards = []
 current_question_index = 0
+go_back = False
 
 
 def reset():
-    global answers_state, selected_questions, card_positions, button_positions, selected_cards, current_question_index
+    global answers_state, selected_questions, card_positions, button_positions, selected_cards, current_question_index, go_back
     answers_state = ["pending" for q in range(NUMBER_OF_QUESTIONS)]
     selected_questions = random.sample(list(QUESTIONS.keys()), NUMBER_OF_QUESTIONS)
     card_positions = {}
     button_positions = {}
     selected_cards = []
     current_question_index = 0
+    go_back = False
 
 
 def game_screen(screen, clock):
     reset()
     while True:
+        check_click()
         show_question(screen)
         draw_status_bar(screen)
         pygame.display.flip()
         clock.tick(30)
         if exit_condition():
-            return answers_state.count('right')
+            return answers_state.count('right'), go_back
 
 
 def draw_status_bar(screen):
@@ -169,9 +172,7 @@ def get_card_by_id(identity):
 
 
 def click_card(index):
-    print(f'index: {index}')
     clicked_card = get_card_by_id(index)
-    print(f'clicked_card: {clicked_card}')
 
     for card_index in selected_cards:
         card = get_card_by_id(card_index)
@@ -179,22 +180,40 @@ def click_card(index):
             selected_cards.remove(card_index)
 
     selected_cards.append(index)
-    print(f'selected_cards: {selected_cards}')
 
 
 def click_button(index):
-    global current_question_index
+    global current_question_index, go_back
 
     if index == 'Confirmar' and len(selected_cards) == 3:
         is_right = set(selected_cards) == set(QUESTIONS[selected_questions[current_question_index]]['answer'])
         answers_state[current_question_index] = 'right' if is_right else 'wrong'
         current_question_index = current_question_index + 1
         selected_cards.clear()
+    elif index == 'Voltar':
+        go_back = True
 
 
 def exit_condition():
-    if current_question_index == NUMBER_OF_QUESTIONS or answers_state.count('wrong') >= 3:
+    if current_question_index == NUMBER_OF_QUESTIONS or answers_state.count('wrong') >= 3 or go_back is True:
         return True
+
+
+def check_click():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+        # Check for mouse button click
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            mouse_pos = event.pos
+            for identity, pos in card_positions.items():
+                if pos.collidepoint(mouse_pos):
+                    click_card(identity)
+            for identity, pos in button_positions.items():
+                if pos.collidepoint(mouse_pos):
+                    click_button(identity)
 
 
 def show_question(screen):
@@ -211,20 +230,7 @@ def show_question(screen):
         x = WIDTH * 0.315 - (TITLE_WIDTH // 2)
         y = 0.06 * HEIGHT
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-            # Check for mouse button click
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                mouse_pos = event.pos
-                for identity, pos in card_positions.items():
-                    if pos.collidepoint(mouse_pos):
-                        click_card(identity)
-                for identity, pos in button_positions.items():
-                    if pos.collidepoint(mouse_pos):
-                        click_button(identity)
+        check_click()
 
         screen.fill((255, 255, 255))
         card_positions.clear()

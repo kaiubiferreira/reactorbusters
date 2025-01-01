@@ -37,5 +37,6 @@ while True:
         pygame.quit()
         sys.exit()
     elif action == 'iniciar':
-        correct_answers = game_screen(screen, clock)
-        resultado_screen(correct_answers, screen, clock)
+        correct_answers, go_back = game_screen(screen, clock)
+        if not go_back:
+            resultado_screen(correct_answers, screen, clock)

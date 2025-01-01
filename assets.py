@@ -29,6 +29,10 @@ BUTTON_RADIUS = 15
 
 RIGHT_IMAGE = pygame.image.load(os.path.join("resources", "right_answer.png"))
 WRONG_IMAGE = pygame.image.load(os.path.join("resources", "wrong_answer.png"))
+
+SUCCESS_IMAGE = pygame.image.load(os.path.join("resources", "success.png"))
+FAILURE_IMAGE = pygame.image.load(os.path.join("resources", "failure.png"))
+
 PENDING_COLOR = (169, 169, 169)
 
 QUESTIONS = {

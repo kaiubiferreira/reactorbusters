@@ -1,7 +1,6 @@
 import random
 import sys
 
-import pygame
 from moviepy import VideoFileClip
 
 from assets import *
@@ -40,17 +39,21 @@ def draw_status_bar(screen):
     start_x = SQUARE_PADDING
     start_y = 0.87 * HEIGHT
 
-    colors = {
-        'pending': (169, 169, 169),  # Gray
-        'right': (0, 255, 0),  # Green
-        'wrong': (255, 0, 0)  # Red
-    }
+    image_width = STATUS_WIDTH
+    image_height = STATUS_HEIGHT
+
+    right_image_resized = pygame.transform.scale(RIGHT_IMAGE, (image_width, image_height))
+    wrong_image_resized = pygame.transform.scale(WRONG_IMAGE, (image_width, image_height))
 
     for i, state in enumerate(answers_state):
-        color = colors[state]
-        pygame.draw.rect(screen, color,
-                         (start_x + i * (STATUS_WIDTH + SQUARE_PADDING), start_y, STATUS_WIDTH,
-                          STATUS_HEIGHT), border_radius=CARD_BORDER_RADIUS)
+        if state == 'pending':
+            pygame.draw.rect(screen, PENDING_COLOR,
+                             (start_x + i * (image_width + SQUARE_PADDING), start_y,
+                              image_width, image_height), border_radius=CARD_BORDER_RADIUS)
+        elif state == 'right':
+            screen.blit(right_image_resized, (start_x + i * (image_width + SQUARE_PADDING), start_y))
+        elif state == 'wrong':
+            screen.blit(wrong_image_resized, (start_x + i * (image_width + SQUARE_PADDING), start_y))
 
 
 def draw_title(screen):
@@ -87,7 +90,6 @@ def draw_cards(screen):
     rows = 3
 
     # Base coordinates for positioning
-    card_width_with_padding = CARD_WIDTH + CARD_PADDING
     card_y = 0.06 * HEIGHT
 
     middle_x = 0.81 * WIDTH
@@ -108,20 +110,20 @@ def draw_cards(screen):
             mouse_pos = pygame.mouse.get_pos()
             is_hover = rect.collidepoint(mouse_pos)
             is_selected = card['id'] in selected_cards
+            card_image = pygame.transform.scale(card['image'], (CARD_WIDTH, CARD_HEIGHT))
 
-            if is_hover or is_selected:
-                hover_rect = pygame.Rect(card_x - 5, card_y - 5, CARD_WIDTH + 10, CARD_HEIGHT + 10)
-                if is_selected:
-                    border_rect = hover_rect.inflate(CARD_BORDER_WIDTH,
-                                                     CARD_BORDER_WIDTH)  # Inflate the rect for border
-                    border_color = COLORS[card['group']]
-                    pygame.draw.rect(screen, border_color, border_rect, border_radius=CARD_BORDER_RADIUS)
-                pygame.draw.rect(screen, (120, 120, 0), hover_rect, border_radius=CARD_BORDER_RADIUS)
+            if is_selected:
+                selected_rect = pygame.Rect(card_x - 5, card_y - 5, CARD_WIDTH + 10, CARD_HEIGHT + 10)
+                border_rect = selected_rect.inflate(CARD_BORDER_WIDTH, CARD_BORDER_WIDTH)
+                border_color = COLORS[card['group']]
+                pygame.draw.rect(screen, border_color, border_rect)
+                screen.blit(card_image, (card_x, card_y))
+            elif is_hover:
+                card_image = pygame.transform.scale(card['image'],
+                                                    (CARD_WIDTH + CARD_BORDER_WIDTH, CARD_HEIGHT + CARD_BORDER_WIDTH))
+                screen.blit(card_image, (card_x - CARD_BORDER_WIDTH // 2, card_y - CARD_BORDER_WIDTH // 2))
             else:
-                pygame.draw.rect(screen, (120, 120, 0), rect, border_radius=CARD_BORDER_RADIUS)
-
-            # Blit the image onto the card
-            # screen.blit(images[i], (card_x + CARD_PADDING, card_y + CARD_PADDING))
+                screen.blit(card_image, (card_x, card_y))
 
         # Update card_y for the next row after drawing all cards in the current row
         card_y += CARD_HEIGHT + CARD_PADDING

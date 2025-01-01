@@ -32,6 +32,7 @@ def draw_button(surface, position, text, is_hover=False):
 # Main menu function
 def menu_screen(screen, clock):
     background = pygame.image.load(MENU_BACKGROUND)
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     menu_running = True
 
     while menu_running:

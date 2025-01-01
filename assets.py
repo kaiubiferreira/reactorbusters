@@ -1,27 +1,43 @@
 import os
 
-WIDTH, HEIGHT = 1600, 900
+import pygame
 
-QUESTION_VIDEO_WIDTH, QUESTION_VIDEO_HEIGHT = 800, 800
+WIDTH, HEIGHT = 1600 * 1.15, 900 * 1.15
+
+QUESTION_VIDEO_WIDTH = WIDTH * 0.62
+QUESTION_VIDEO_HEIGHT = QUESTION_VIDEO_WIDTH * 0.72
 
 NUMBER_OF_QUESTIONS = 5
 
 MENU_BACKGROUND = os.path.join("resources", "menu-background.jpg")
-STATUS_RECT_WIDTH, STATUS_RECT_HEIGHT = 100, 100
+STATUS_WIDTH, STATUS_HEIGHT = 110, 110
 SQUARE_PADDING = 10
 VIDEO_PADDING = 40
-TITLE_WIDTH, TITLE_HEIGHT = 250, 50
-LABEL_WIDTH, LABEL_HEIGHT = 250, 50
+TITLE_WIDTH, TITLE_HEIGHT = QUESTION_VIDEO_WIDTH, 50
+LABEL_WIDTH, LABEL_HEIGHT = WIDTH * 0.35, 50
 LABEL_RADIUS = 15
-TOP_MARGIN = 10
 
-CARD_WIDTH, CARD_HEIGHT = 256 * 0.7, 384 * 0.7
+CARD_WIDTH = 0.115 * WIDTH
+CARD_HEIGHT = CARD_WIDTH * 1.5
+
 CARD_BORDER_RADIUS = 15
-CARD_PADDING = 15
+CARD_PADDING = 10
 CARD_BORDER_WIDTH = 10
 
-CONFIRM_BUTTON_WIDTH, CONFIRM_BUTTON_HEIGHT = 130, 50
+BUTTON_WIDTH, BUTTON_HEIGHT = 130, STATUS_HEIGHT
 BUTTON_RADIUS = 15
+
+RIGHT_IMAGE = pygame.image.load(os.path.join("resources", "right_answer.png"))
+WRONG_IMAGE = pygame.image.load(os.path.join("resources", "wrong_answer.png"))
+
+SUCCESS_IMAGE = pygame.image.load(os.path.join("resources", "success.png"))
+FAILURE_IMAGE = pygame.image.load(os.path.join("resources", "failure.png"))
+
+CREDITS_IMAGE = pygame.image.load(os.path.join("resources", "credits.png"))
+INTRODUCTION_IMAGE = pygame.image.load(os.path.join("resources", "introduction.png"))
+RULES_IMAGE = pygame.image.load(os.path.join("resources", "rules.png"))
+
+PENDING_COLOR = (169, 169, 169)
 
 QUESTIONS = {
     'question_1': {
@@ -94,54 +110,54 @@ CARDS = [
         'id': 'adsorption_molecular',
         'title': 'Adsorção Molecular',
         'group': 'Adsorption',
-        'image': 'adsorption_molecular.png'
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'adsorption_molecular.png'))
     },
     {
         'id': 'adsorption_dissociative',
         'title': 'Adsorção Dissociativa',
         'group': 'Adsorption',
-        'image': 'adsorption_dissociative.png'
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'adsorption_dissociative.png'))
     },
     {
         'id': 'reaction_single_site',
         'title': 'Reação Sítio Único',
         'group': 'Reaction',
-        'image': 'reaction_single_site.png'
-    },
-    {
-        'id': 'reaction_double_site',
-        'title': 'Reação Sítio Duplo',
-        'group': 'Reaction',
-        'image': 'reaction_double_site.png'
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'reaction_single_site.png'))
     },
     {
         'id': 'reaction_eley_rideal',
         'title': 'Reação Eley - Rideal',
         'group': 'Reaction',
-        'image': 'reaction_eley_rideal.png'
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'reaction_eley_rideal.png'))
+    },
+    {
+        'id': 'reaction_double_site',
+        'title': 'Reação Sítio Duplo',
+        'group': 'Reaction',
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'reaction_double_site.png'))
+    },
+    {
+        'id': 'reaction_double_site_same_site',
+        'title': 'Reação Sítio Duplo Mesmo Sítio',
+        'group': 'Reaction',
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'reaction_double_site_same_site.png'))
+    },
+    {
+        'id': 'reaction_double_site_different_site',
+        'title': 'Reação Sítio Duplo Sítio Diferente',
+        'group': 'Reaction',
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'reaction_double_site_same_site.png'))
     },
     {
         'id': 'desorption',
         'title': 'Dessorção',
         'group': 'Desorption',
-        'image': 'desorption.png'
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'desorption.png'))
     },
     {
         'id': 'desorption_absent',
         'title': 'Dessorção ausente',
         'group': 'Desorption',
-        'image': 'desorption_absent.png'
-    },
-    {
-        'id': 'desorption_absent_2',
-        'title': 'Dessorção ausente mesmo',
-        'group': 'Desorption',
-        'image': 'desorption_absent.png'
-    },
-    {
-        'id': 'desorption_absent_3',
-        'title': 'Dessorção bastante ausente',
-        'group': 'Desorption',
-        'image': 'desorption_absent.png'
-    },
+        'image': pygame.image.load(os.path.join('resources', 'cards', 'desorption_absent.png'))
+    }
 ]

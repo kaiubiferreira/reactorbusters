@@ -14,9 +14,9 @@ COLORS = {
     'primary_text': '#FFFFFF',
     'secondary': '#FF851B',
     'secondary_text': '#DDDDDD',
-    'Adsorption': '#FF4136',
-    'Reaction': '#FF851B',
-    'Desorption': '#FFDC00',
+    'Adsorption': '#FFE432',
+    'Reaction': '#FFE432',
+    'Desorption': '#FFE432',
 }
 
 font = {

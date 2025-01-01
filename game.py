@@ -37,9 +37,8 @@ def game_screen(screen, clock):
 
 
 def draw_status_bar(screen):
-    # Adjust to place squares vertically
-    start_x = (WIDTH // 32) * 29.5
-    start_y = TOP_MARGIN + TITLE_HEIGHT + SQUARE_PADDING
+    start_x = 0.95 * WIDTH - STATUS_RECT_WIDTH // 2
+    start_y = 0.075 * HEIGHT
 
     colors = {
         'pending': (169, 169, 169),  # Gray
@@ -55,8 +54,9 @@ def draw_status_bar(screen):
 
 
 def draw_title(screen):
-    y = TOP_MARGIN
-    x = (WIDTH / 2 - TITLE_WIDTH) // 2
+    y = 0.015 * HEIGHT
+    x = 0.25 * WIDTH - TITLE_WIDTH // 2
+
     pygame.draw.rect(screen, COLORS['primary'], (x, y, TITLE_WIDTH, TITLE_HEIGHT), border_radius=LABEL_RADIUS)
     font = pygame.font.Font(None, 28)  # TODO: config
     text = 'Mecanismo de Reação'
@@ -70,8 +70,10 @@ def draw_title(screen):
 
 
 def draw_label(screen):
-    y = TOP_MARGIN
-    x = WIDTH // 2 + WIDTH // 4 - LABEL_WIDTH // 2 - 50
+    y = 0.015 * HEIGHT
+    x = 0.70 * WIDTH - LABEL_WIDTH // 2
+    print(f'x: {x}, y: {y}')
+    print(f'ratio: {x / WIDTH}, {y / HEIGHT}')
     pygame.draw.rect(screen, COLORS['primary'], (x, y, LABEL_WIDTH, LABEL_HEIGHT), border_radius=LABEL_RADIUS)
     font = pygame.font.Font(None, 28)  # TODO: config
     text = 'Escolha suas cartas'
@@ -91,7 +93,9 @@ def draw_cards(screen):
 
     # Base coordinates for positioning
     card_width_with_padding = CARD_WIDTH + CARD_PADDING
-    card_y = TOP_MARGIN + CARD_PADDING + TITLE_HEIGHT
+    card_y = 0.075 * HEIGHT
+    print(f'card_y: {card_y}')
+    print(f'ratio_y: {card_y / HEIGHT}')
 
     # Loop through rows and columns to draw cards
     for row in range(rows):
@@ -101,6 +105,9 @@ def draw_cards(screen):
                 break
 
             card = CARDS[index]
+            print(col)
+            print(f'start_x: {WIDTH // 2 + WIDTH // 4 - 50}')
+            print(f'ratio_x: {(WIDTH // 2 + WIDTH // 4 - 50) / WIDTH}')
             card_x = (WIDTH // 2 + WIDTH // 4 - 50) - (cards_per_row * CARD_WIDTH + (
                     cards_per_row - 1) * CARD_PADDING) // 2 + col * card_width_with_padding
             rect = pygame.Rect(card_x, card_y, CARD_WIDTH, CARD_HEIGHT)
@@ -129,9 +136,8 @@ def draw_cards(screen):
 
 
 def draw_confirm_button(screen):
-    start_y = TOP_MARGIN + TITLE_HEIGHT + SQUARE_PADDING + 50
-    button_x = (WIDTH // 32) * 30.5 - CONFIRM_BUTTON_WIDTH // 2
-    button_y = start_y + NUMBER_OF_QUESTIONS * (STATUS_RECT_HEIGHT + SQUARE_PADDING)
+    button_x = 0.95 * WIDTH - CONFIRM_BUTTON_WIDTH // 2
+    button_y = 0.75 * HEIGHT - CONFIRM_BUTTON_HEIGHT // 2
 
     rect = pygame.Rect(button_x, button_y, CONFIRM_BUTTON_WIDTH, CONFIRM_BUTTON_HEIGHT)
     button_positions[f'confirm'] = rect
@@ -162,7 +168,6 @@ def get_card_by_id(identity):
 
 
 def click_card(index):
-
     print(f'index: {index}')
     clicked_card = get_card_by_id(index)
     print(f'clicked_card: {clicked_card}')

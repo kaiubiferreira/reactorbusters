@@ -141,7 +141,7 @@ def draw_buttons(screen):
     start_x = SQUARE_PADDING + (NUMBER_OF_QUESTIONS + 1) * (STATUS_WIDTH + SQUARE_PADDING)
     button_y = 0.87 * HEIGHT
 
-    buttons = ['Voltar', 'Dicas', 'Confirmar']
+    buttons = ['Voltar', 'Confirmar']
 
     for button_index, button in enumerate(buttons):
         button_x = start_x + button_index * (BUTTON_WIDTH + SQUARE_PADDING)

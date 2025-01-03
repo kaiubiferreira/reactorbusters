@@ -226,7 +226,7 @@ def show_question(screen, clock):
     question = QUESTIONS[selected_questions[current_question_index]]
     video = question['video']
 
-    video_path = os.path.join("resources", video)
+    video_path = os.path.join(RESOURCES, video)
     clip = VideoFileClip(video_path)
     for frame in clip.iter_frames(fps=30, dtype='uint8'):
         frame_surface = pygame.surfarray.make_surface(frame)

@@ -3,8 +3,13 @@ import sys
 
 import pygame
 
-factor = 0.6
-WIDTH, HEIGHT = int(1600 * factor), int(900 * factor)
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+pygame.display.set_caption("Reactor Busters")
+clock = pygame.time.Clock()
+# factor = 0.6
+# WIDTH, HEIGHT = int(1600 * factor), int(900 * factor)
+info = pygame.display.Info()
+WIDTH, HEIGHT = info.current_w, info.current_h
 
 QUESTION_VIDEO_WIDTH = int(WIDTH * 0.62)
 QUESTION_VIDEO_HEIGHT = int(QUESTION_VIDEO_WIDTH * 0.72)

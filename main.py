@@ -2,17 +2,13 @@ import sys
 
 import pygame
 
-from assets import WIDTH, HEIGHT
+from assets import screen, clock
 from credits import credits_screen
 from game import game_screen
 from introduction import introduction_screen
 from menu import menu_screen
 from results import results_screen
 from rules import rules_screen
-
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Reactor Busters")
-clock = pygame.time.Clock()
 
 pygame.init()
 running = True

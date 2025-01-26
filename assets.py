@@ -28,7 +28,7 @@ def get_resource_path():
 
 RESOURCES = get_resource_path()
 
-MENU_BACKGROUND = os.path.join(RESOURCES, "menu-background.jpg")
+MENU_BACKGROUND = os.path.join(RESOURCES, "menu-background.png")
 STATUS_WIDTH, STATUS_HEIGHT = 0.1 * HEIGHT, 0.1 * HEIGHT
 SQUARE_PADDING = int(0.01 * HEIGHT)
 VIDEO_PADDING = int(0.05 * HEIGHT)
@@ -63,65 +63,48 @@ QUESTIONS = {
         'question': 'France?',
         'video': 'question_1.mp4',
         'answer': [
-            'adsorption_molecular',
-            'reaction_single_site',
-            'desorption_absent'
+            'adsorption_dissociative',
+            'reaction_double_site_different_site',
+            'desorption'
         ]
     },
     'question_2': {
         'question': 'What is the capital of Germany?',
-        'video': 'question_1.mp4',
+        'video': 'question_2.mp4',
         'answer': [
             'adsorption_molecular',
-            'reaction_single_site',
-            'desorption_absent'
+            'reaction_double_site',
+            'desorption'
         ]
     },
     'question_3': {
         'question': 'What is the capital of Germany?',
-        'video': 'question_1.mp4',
+        'video': 'question_3.mp4',
         'answer': [
             'adsorption_molecular',
-            'reaction_single_site',
-            'desorption_absent'
+            'reaction_double_site_same_site',
+            'desorption'
         ]
     },
     'question_4': {
         'question': 'What is the capital of Germany?',
-        'video': 'question_1.mp4',
+        'video': 'question_4.mp4',
         'answer': [
             'adsorption_molecular',
-            'reaction_single_site',
-            'desorption_absent'
+            'reaction_double_site_different_site',
+            'desorption'
         ]
     },
     'question_5': {
         'question': 'What is the capital of Germany?',
-        'video': 'question_1.mp4',
+        'video': 'question_5.mp4',
         'answer': [
             'adsorption_molecular',
-            'reaction_single_site',
-            'desorption_absent'
-        ]
-    },
-    'question_6': {
-        'question': 'What is the capital of Germany?',
-        'video': 'question_1.mp4',
-        'answer': [
-            'adsorption_molecular',
-            'reaction_single_site',
-            'desorption_absent'
-        ]
-    },
-    'question_7': {
-        'question': 'What is the capital of Germany?',
-        'video': 'question_1.mp4',
-        'answer': [
-            'adsorption_molecular',
-            'reaction_single_site',
+            'reaction_eley_rideal',
             'desorption_absent'
         ]
     }
+   
 }
 
 CARDS = [
@@ -165,7 +148,7 @@ CARDS = [
         'id': 'reaction_double_site_different_site',
         'title': 'Reação Sítio Duplo Sítio Diferente',
         'group': 'Reaction',
-        'image': pygame.image.load(os.path.join(RESOURCES, 'cards', 'reaction_double_site_same_site.png'))
+        'image': pygame.image.load(os.path.join(RESOURCES, 'cards', 'reaction_double_site_different_site.png'))
     },
     {
         'id': 'desorption',

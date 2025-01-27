@@ -29,7 +29,8 @@ def get_resource_path():
 
 RESOURCES = get_resource_path()
 
-MENU_BACKGROUND = os.path.join(RESOURCES, "menu-background.png")
+GAME_BACKGROUND = os.path.join(RESOURCES, "game_background.png")
+MENU_BACKGROUND = os.path.join(RESOURCES, "menu_background.png")
 STATUS_WIDTH, STATUS_HEIGHT = 0.1 * HEIGHT, 0.1 * HEIGHT
 SQUARE_PADDING = int(0.01 * HEIGHT)
 VIDEO_PADDING = int(0.05 * HEIGHT)

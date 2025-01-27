@@ -29,7 +29,8 @@ def reset():
     current_question_index = 0
     go_back = False
     video_status = 'pending'
-    screen.fill((255, 255, 255))
+
+    clean_screen()
 
 
 def game_screen(screen, clock):
@@ -186,7 +187,9 @@ def get_card_by_id(identity):
 
 
 def clean_screen():
-    screen.fill((255, 255, 255))
+    background = pygame.image.load(GAME_BACKGROUND)
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    screen.blit(background, (0, 0))
 
 
 def click_card(index):

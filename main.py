@@ -13,11 +13,6 @@ from rules import rules_screen
 pygame.init()
 running = True
 
-
-def not_implemented(title, screen, clock):
-    print(f'{title} Not implemented yet')
-
-
 while True:
     action = menu_screen(screen, clock)
 

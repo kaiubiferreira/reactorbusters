@@ -27,8 +27,7 @@ def play_video(video_path):
 
         if video_status != 'running':
             break
-        else:
-            screen.blit(frame_surface, (x, y))
+        screen.blit(frame_surface, (x, y))
 
 
 def basic_video_screen(video, screen, clock):

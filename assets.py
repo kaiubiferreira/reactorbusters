@@ -51,9 +51,9 @@ BUTTON_RADIUS = int(0.02 * HEIGHT)
 RIGHT_IMAGE = pygame.image.load(os.path.join(RESOURCES, "right_answer.png"))
 WRONG_IMAGE = pygame.image.load(os.path.join(RESOURCES, "wrong_answer.png"))
 
-SUCCESS_IMAGE = pygame.image.load(os.path.join(RESOURCES, "success.png"))
-FAILURE_IMAGE = pygame.image.load(os.path.join(RESOURCES, "failure.png"))
 FAILURE_VIDEO = os.path.join(RESOURCES, "failure.mp4")
+SUCCESS_VIDEO = os.path.join(RESOURCES, "success.mp4")
+MEDIUM_SUCCESS_VIDEO = os.path.join(RESOURCES, "medium_win.mp4")
 
 CREDITS_IMAGE = pygame.image.load(os.path.join(RESOURCES, "credits.png"))
 INTRODUCTION_IMAGE = pygame.image.load(os.path.join(RESOURCES, "introduction.png"))

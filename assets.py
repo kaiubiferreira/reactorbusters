@@ -3,8 +3,7 @@ import sys
 
 import pygame
 
-# screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-screen = pygame.display.set_mode((1600, 900))
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption("Reactor Busters")
 clock = pygame.time.Clock()
 # factor = 0.6

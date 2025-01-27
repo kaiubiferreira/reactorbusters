@@ -12,7 +12,6 @@ button_names = ['Iniciar', 'Introdução', 'Regras', 'Créditos', 'Sair']
 
 
 def menu_screen(screen, clock):
-    print('menu_screen')
     background = pygame.image.load(MENU_BACKGROUND)
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 

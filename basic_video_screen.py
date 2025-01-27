@@ -30,8 +30,15 @@ def play_video(video_path):
         screen.blit(frame_surface, (x, y))
 
 
+def clean_screen():
+    background = pygame.image.load(GAME_BACKGROUND)
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    screen.blit(background, (0, 0))
+
+
 def basic_video_screen(video, screen, clock):
     global video_status
+    clean_screen()
     video_thread = threading.Thread(target=play_video, args=(video,))
     video_thread.start()
     video_status = 'running'

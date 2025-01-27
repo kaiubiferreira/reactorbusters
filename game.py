@@ -1,5 +1,5 @@
 import random
-import sys
+import threading
 
 from moviepy import VideoFileClip
 
@@ -15,10 +15,11 @@ current_question_index = 0
 go_back = False
 default_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_ARROW)
 hover_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_HAND)
+video_status = 'pending'
 
 
 def reset():
-    global answers_state, selected_questions, card_positions, button_positions, selected_cards, current_question_index, go_back
+    global answers_state, selected_questions, card_positions, button_positions, selected_cards, current_question_index, go_back, video_status
     pygame.mouse.set_cursor(default_cursor)
     answers_state = ["pending" for _ in range(NUMBER_OF_QUESTIONS)]
     selected_questions = random.sample(list(QUESTIONS.keys()), NUMBER_OF_QUESTIONS)
@@ -27,6 +28,9 @@ def reset():
     selected_cards = []
     current_question_index = 0
     go_back = False
+    video_status = 'pending'
+
+    clean_screen()
 
 
 def game_screen(screen, clock):
@@ -35,7 +39,12 @@ def game_screen(screen, clock):
         pygame.mouse.set_cursor(default_cursor)
         check_click()
         show_question(screen, clock)
+        card_positions.clear()
         draw_status_bar(screen)
+        draw_title(screen)
+        draw_label(screen)
+        draw_cards(screen)
+        draw_buttons(screen)
         pygame.display.flip()
         clock.tick(30)
         if exit_condition():
@@ -177,7 +186,14 @@ def get_card_by_id(identity):
     return None
 
 
+def clean_screen():
+    background = pygame.image.load(GAME_BACKGROUND)
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    screen.blit(background, (0, 0))
+
+
 def click_card(index):
+    clean_screen()
     clicked_card = get_card_by_id(index)
 
     for card_index in selected_cards:
@@ -189,13 +205,15 @@ def click_card(index):
 
 
 def click_button(index):
-    global current_question_index, go_back
+    global current_question_index, go_back, video_status
 
     if index == 'Confirmar' and len(selected_cards) == 3:
+        clean_screen()
         is_right = set(selected_cards) == set(QUESTIONS[selected_questions[current_question_index]]['answer'])
         answers_state[current_question_index] = 'right' if is_right else 'wrong'
         current_question_index = current_question_index + 1
         selected_cards.clear()
+        video_status = 'reset'
     elif index == 'Voltar':
         go_back = True
 
@@ -222,13 +240,13 @@ def check_click():
                     click_button(identity)
 
 
-def show_question(screen, clock):
+def play_video():
+    global video_status
     question = QUESTIONS[selected_questions[current_question_index]]
     video = question['video']
-
     video_path = os.path.join(RESOURCES, video)
     clip = VideoFileClip(video_path)
-    for frame in clip.iter_frames(fps=30, dtype='uint8'):
+    for frame in clip.iter_frames(fps=60, dtype='uint8'):
         frame_surface = pygame.surfarray.make_surface(frame)
         frame_surface = pygame.transform.flip(frame_surface, False, True)
         frame_surface = pygame.transform.rotate(frame_surface, 270)
@@ -236,22 +254,16 @@ def show_question(screen, clock):
         x = WIDTH * 0.315 - (TITLE_WIDTH // 2)
         y = 0.06 * HEIGHT
 
-        check_click()
-
-        screen.fill((255, 255, 255))
-        card_positions.clear()
         screen.blit(frame_surface, (x, y))
-        draw_status_bar(screen)
-        draw_title(screen)
-        draw_label(screen)
-        draw_cards(screen)
-        draw_buttons(screen)
-        pygame.display.flip()
-        clock.tick(30)
-        if exit_condition():
+        if exit_condition() or video_status == 'reset':
             break
+    video_status = 'pending'
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+
+def show_question(screen, clock):
+    global video_status
+
+    if video_status == 'pending':
+        video_status = 'running'
+        video_thread = threading.Thread(target=play_video)
+        video_thread.start()

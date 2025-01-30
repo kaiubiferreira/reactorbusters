@@ -1,8 +1,8 @@
 from assets import *
 from theme import COLORS
 
-button_x = WIDTH * 0.5 - BUTTON_WIDTH // 2
-button_y = HEIGHT * 0.9
+button_x = WIDTH * 0.90 - BUTTON_WIDTH // 2
+button_y = HEIGHT * 0.85
 rect = pygame.Rect(button_x, button_y, BUTTON_WIDTH, BUTTON_HEIGHT)
 
 hover_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_HAND)

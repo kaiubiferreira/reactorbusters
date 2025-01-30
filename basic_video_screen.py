@@ -5,8 +5,8 @@ from moviepy import VideoFileClip
 from assets import *
 from theme import COLORS
 
-button_x = WIDTH * 0.5 - BUTTON_WIDTH // 2
-button_y = HEIGHT * 0.9
+button_x = WIDTH * 0.90 - BUTTON_WIDTH // 2
+button_y = HEIGHT * 0.85
 rect = pygame.Rect(button_x, button_y, BUTTON_WIDTH, BUTTON_HEIGHT)
 
 hover_cursor = pygame.cursors.Cursor(pygame.SYSTEM_CURSOR_HAND)
@@ -17,7 +17,7 @@ video_status = 'pending'
 def play_video(video_path):
     global video_status
     clip = VideoFileClip(video_path)
-    for frame in clip.iter_frames(fps=60, dtype='uint8'):
+    for frame in clip.iter_frames(fps=30, dtype='uint8'):
         frame_surface = pygame.surfarray.make_surface(frame)
         frame_surface = pygame.transform.flip(frame_surface, False, True)
         frame_surface = pygame.transform.rotate(frame_surface, 270)
@@ -28,6 +28,9 @@ def play_video(video_path):
         if video_status != 'running':
             break
         screen.blit(frame_surface, (x, y))
+
+        clock.tick(30)
+
 
 
 def clean_screen():
@@ -73,4 +76,4 @@ def basic_video_screen(video, screen, clock):
 
         pygame.display.flip()
 
-        clock.tick(60)
+        clock.tick(30)

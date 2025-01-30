@@ -18,7 +18,7 @@ def menu_screen(screen, clock):
     buttons = []
     for i, button_label in enumerate(button_names):
         x = (WIDTH - button_width) // 2
-        y = HEIGHT - (len(button_names) - i) * (button_height + 10) - 80
+        y = HEIGHT - (len(button_names) - i) * (button_height + 10) - 50
         buttons.append(Button(x, y, button_width, button_height, button_label, button_radius))
 
     menu_running = True

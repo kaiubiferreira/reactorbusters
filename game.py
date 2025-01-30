@@ -46,7 +46,7 @@ def game_screen(screen, clock):
         draw_cards(screen)
         draw_buttons(screen)
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(60)
         if exit_condition():
             return answers_state.count('right'), go_back
 
@@ -253,6 +253,8 @@ def play_video():
         frame_surface = pygame.transform.scale(frame_surface, (QUESTION_VIDEO_WIDTH, QUESTION_VIDEO_HEIGHT))
         x = WIDTH * 0.315 - (TITLE_WIDTH // 2)
         y = 0.06 * HEIGHT
+        clock.tick(60)
+
 
         screen.blit(frame_surface, (x, y))
         if exit_condition() or video_status == 'reset':

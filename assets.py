@@ -53,6 +53,8 @@ WRONG_IMAGE = pygame.image.load(os.path.join(RESOURCES, "wrong_answer.png"))
 FAILURE_VIDEO = os.path.join(RESOURCES, "failure.mp4")
 SUCCESS_VIDEO = os.path.join(RESOURCES, "success.mp4")
 MEDIUM_SUCCESS_VIDEO = os.path.join(RESOURCES, "medium_win.mp4")
+INTRODUCTION_VIDEO = os.path.join(RESOURCES, "introduction.mp4")
+
 
 CREDITS_IMAGE = pygame.image.load(os.path.join(RESOURCES, "credits.png"))
 INTRODUCTION_IMAGE = pygame.image.load(os.path.join(RESOURCES, "introduction.png"))

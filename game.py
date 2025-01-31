@@ -4,7 +4,7 @@ import threading
 from moviepy import VideoFileClip
 
 from assets import *
-from theme import COLORS
+from theme import COLORS,FONT
 
 answers_state = ["pending" for q in range(NUMBER_OF_QUESTIONS)]
 selected_questions = random.sample(list(QUESTIONS.keys()), NUMBER_OF_QUESTIONS)
@@ -77,8 +77,8 @@ def draw_title(screen):
     x = WIDTH * 0.315 - (TITLE_WIDTH // 2)
 
     pygame.draw.rect(screen, COLORS['primary'], (x, y, TITLE_WIDTH, TITLE_HEIGHT), border_radius=LABEL_RADIUS)
-    font = pygame.font.Font(None, 28)  # TODO: config
-    text = 'Mecanismo de Reação'
+    font = pygame.font.Font(FONT, 30)  # TODO: config
+    text = 'MECANISMO DE REAÇÃO'
     text_surface = font.render(text, True, COLORS['primary_text'])
 
     text_rect = text_surface.get_rect()
@@ -92,8 +92,8 @@ def draw_label(screen):
     y = 0.01 * HEIGHT
     x = 0.81 * WIDTH - (LABEL_WIDTH // 2)
     pygame.draw.rect(screen, COLORS['primary'], (x, y, LABEL_WIDTH, LABEL_HEIGHT), border_radius=LABEL_RADIUS)
-    font = pygame.font.Font(None, 28)  # TODO: config
-    text = 'Escolha suas cartas'
+    font = pygame.font.Font(FONT, 30)  # TODO: config
+    text = 'ESCOLHA AS CARTAS'
     text_surface = font.render(text, True, COLORS['primary_text'])
     text_rect = text_surface.get_rect()
     text_rect.center = (x + LABEL_WIDTH // 2, y + LABEL_HEIGHT // 2)
@@ -150,7 +150,7 @@ def draw_buttons(screen):
     start_x = SQUARE_PADDING + (NUMBER_OF_QUESTIONS + 1) * (STATUS_WIDTH + SQUARE_PADDING)
     button_y = 0.87 * HEIGHT
 
-    buttons = ['Voltar', 'Confirmar']
+    buttons = ['VOLTAR', 'CONFIRMAR']
 
     for button_index, button in enumerate(buttons):
         button_x = start_x + button_index * (BUTTON_WIDTH + SQUARE_PADDING)
@@ -161,7 +161,7 @@ def draw_buttons(screen):
         mouse_pos = pygame.mouse.get_pos()
         is_hover = rect.collidepoint(mouse_pos)
 
-        active = button != 'Confirmar' or len(selected_cards) == 3
+        active = button != 'CONFIRMAR' or len(selected_cards) == 3
 
         if not active:
             button_color = COLORS['button_disabled']
@@ -172,7 +172,7 @@ def draw_buttons(screen):
             button_color = COLORS['primary']
 
         pygame.draw.rect(screen, button_color, rect, border_radius=BUTTON_RADIUS)
-        font = pygame.font.Font(None, 36)
+        font = pygame.font.Font(FONT, 30)
         text_surface = font.render(button, True, COLORS['primary_text'])
         text_rect = text_surface.get_rect(center=rect.center)
         screen.blit(text_surface, text_rect)
@@ -207,14 +207,14 @@ def click_card(index):
 def click_button(index):
     global current_question_index, go_back, video_status
 
-    if index == 'Confirmar' and len(selected_cards) == 3:
+    if index == 'CONFIRMAR' and len(selected_cards) == 3:
         clean_screen()
         is_right = set(selected_cards) == set(QUESTIONS[selected_questions[current_question_index]]['answer'])
         answers_state[current_question_index] = 'right' if is_right else 'wrong'
         current_question_index = current_question_index + 1
         selected_cards.clear()
         video_status = 'reset'
-    elif index == 'Voltar':
+    elif index == 'VOLTAR':
         go_back = True
 
 

@@ -1,9 +1,7 @@
 import threading
-
 from moviepy import VideoFileClip
-
 from assets import *
-from theme import COLORS
+from theme import COLORS, FONT
 
 button_x = WIDTH * 0.90 - BUTTON_WIDTH // 2
 button_y = HEIGHT * 0.85
@@ -69,8 +67,8 @@ def basic_video_screen(video, screen, clock):
             button_color = COLORS['primary']
 
         pygame.draw.rect(screen, button_color, rect, border_radius=BUTTON_RADIUS)
-        font = pygame.font.Font(None, 36)
-        text_surface = font.render("Voltar", True, COLORS['primary_text'])
+        font = pygame.font.Font(FONT,30)
+        text_surface = font.render("VOLTAR", True, COLORS['primary_text'])
         text_rect = text_surface.get_rect(center=rect.center)
         screen.blit(text_surface, text_rect)
 

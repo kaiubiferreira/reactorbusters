@@ -1,43 +1,26 @@
+import os
+from assets import RESOURCES
+
 COLORS = {
     'background': '#111111',
     'text': '#7FDBFF',
-    'button': '#0074D9',
-    'button_text': '#FFFFFF',
-    'button_hover': '#0056B3',
-    'button_hover_text': '#FFFFFF',
+    'button': '#F8DC2D',
+    'button_text': '#6418E9',
+    'button_hover': '#8C52FF',
+    'button_hover_text': '#AAD1FA',
     'button_active': '#004899',
     'button_active_text': '#FFFFFF',
     'button_disabled': '#AAAAAA',
     'button_disabled_text': '#FFFFFF',
     'button_disabled_hover': '#AAAAAA',
-    'primary': '#0074D9',
-    'primary_text': '#FFFFFF',
-    'secondary': '#FF851B',
-    'secondary_text': '#DDDDDD',
-    'Adsorption': '#FFE432',
-    'Reaction': '#FFE432',
-    'Desorption': '#FFE432',
+    'primary': '#000000',
+    'primary_text': '#AAD1FA',
+    'secondary': '#000000',
+    'secondary_text': '#AD1FA',
+    'Adsorption': '#F8DC2D',
+    'Reaction': '#F8DC2D',
+    'Desorption': '#F8DC2D',
 }
+FONT = os.path.join(RESOURCES, "game.otf")
 
-font = {
-    'header': {
-        'family': 'Arial',
-        'size': 16,
-        'weight': 'bold',
-    },
-    'secondary_header': {
-        'family': 'Arial',
-        'size': 12,
-        'weight': 'normal',
-    },
-    'text': {
-        'family': 'Arial',
-        'size': 12,
-        'weight': 'normal',
-    },
-    'button': {
-        'family': 'Arial',
-        'size': 12,
-        'weight': 'bold',
-    },
-}
+

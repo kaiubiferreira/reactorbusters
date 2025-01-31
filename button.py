@@ -1,14 +1,14 @@
 # Button class
 import pygame
 
-from theme import COLORS
+from theme import COLORS, FONT
 
 
 class Button:
     def __init__(self, x, y, width, height, text, radius, font_size=36):
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
-        self.font = pygame.font.Font(None, font_size)
+        self.font = pygame.font.Font(FONT, font_size)
         self.radius = radius
 
     def draw(self, surface):

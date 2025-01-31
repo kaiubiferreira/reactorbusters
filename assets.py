@@ -1,18 +1,17 @@
 import os
 import sys
-
 import pygame
 
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-pygame.display.set_caption("Reactor Busters")
+pygame.display.set_caption("Mecanicool")
 clock = pygame.time.Clock()
 # factor = 0.6
 # WIDTH, HEIGHT = int(1600 * factor), int(900 * factor)
 info = pygame.display.Info()
 WIDTH, HEIGHT = info.current_w, info.current_h
 
-QUESTION_VIDEO_WIDTH = int(WIDTH * 0.62)
-QUESTION_VIDEO_HEIGHT = int(QUESTION_VIDEO_WIDTH * 0.72)
+QUESTION_VIDEO_WIDTH = int(WIDTH * 0.60)
+QUESTION_VIDEO_HEIGHT = int(QUESTION_VIDEO_WIDTH * 0.70)
 
 NUMBER_OF_QUESTIONS = 5
 
@@ -44,7 +43,7 @@ CARD_BORDER_RADIUS = int(0.02 * HEIGHT)
 CARD_PADDING = int(0.01 * HEIGHT)
 CARD_BORDER_WIDTH = int(0.01 * HEIGHT)
 
-BUTTON_WIDTH, BUTTON_HEIGHT = 130, STATUS_HEIGHT
+BUTTON_WIDTH, BUTTON_HEIGHT = 170, STATUS_HEIGHT
 BUTTON_RADIUS = int(0.02 * HEIGHT)
 
 RIGHT_IMAGE = pygame.image.load(os.path.join(RESOURCES, "right_answer.png"))
@@ -60,11 +59,10 @@ CREDITS_IMAGE = pygame.image.load(os.path.join(RESOURCES, "credits.png"))
 INTRODUCTION_IMAGE = pygame.image.load(os.path.join(RESOURCES, "introduction.png"))
 RULES_IMAGE = pygame.image.load(os.path.join(RESOURCES, "rules.png"))
 
-PENDING_COLOR = (169, 169, 169)
+PENDING_COLOR = (0, 0, 0)
 
 QUESTIONS = {
     'question_1': {
-        'question': 'France?',
         'video': 'question_1.mp4',
         'answer': [
             'adsorption_dissociative',
@@ -73,7 +71,6 @@ QUESTIONS = {
         ]
     },
     'question_2': {
-        'question': 'What is the capital of Germany?',
         'video': 'question_2.mp4',
         'answer': [
             'adsorption_molecular',
@@ -82,7 +79,6 @@ QUESTIONS = {
         ]
     },
     'question_3': {
-        'question': 'What is the capital of Germany?',
         'video': 'question_3.mp4',
         'answer': [
             'adsorption_molecular',
@@ -91,7 +87,6 @@ QUESTIONS = {
         ]
     },
     'question_4': {
-        'question': 'What is the capital of Germany?',
         'video': 'question_4.mp4',
         'answer': [
             'adsorption_molecular',
@@ -100,7 +95,6 @@ QUESTIONS = {
         ]
     },
     'question_5': {
-        'question': 'What is the capital of Germany?',
         'video': 'question_5.mp4',
         'answer': [
             'adsorption_molecular',
